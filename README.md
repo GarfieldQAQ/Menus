@@ -1,2 +1,2 @@
 # Menus
-some shit about Menus on MCUS 
+some shit about Menus on MCUs
