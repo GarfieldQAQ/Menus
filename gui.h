@@ -6,11 +6,13 @@
 #define GUI_H
 #include "menu.h"
 
-struct guiStruct {
+struct guiStruct
+{
     struct menuStruct menu;
     uint8_t fontHeight;
     uint8_t rows;
 };
+
 
 
 

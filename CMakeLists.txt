@@ -5,4 +5,5 @@ set(CMAKE_CXX_STANDARD 11)
 
 add_executable(111 main.cpp
         gui.c
-        gui.h)
+        gui.h
+        dataInf.c)

@@ -1,7 +1,6 @@
-#ifndef _MENU__H
-#define _MENU__H
+#ifndef MENU__H
+#define MENU__H
 #include "stdint.h"
-#include "stdio.h"
 
 struct menuStruct
 {
@@ -13,7 +12,6 @@ struct menuStruct
 	void (*Apps)();														//仅在底层绑定APP功能
 	struct menuStruct *childrenMenus;
 	struct menuStruct *parentMenus;
-
 };
 void initAStartMenu(struct menuStruct* menu);
 void createSubMenu(uint8_t itemsNum, struct menuStruct* startMenu);
