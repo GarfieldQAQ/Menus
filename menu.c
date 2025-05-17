@@ -9,10 +9,9 @@ void initAStartMenu(struct menuStruct* menu)
 	menu->layerNum = 0;
 	menu->num = 0;
 	menu->menuStr = "Start Menu";
-	menu->childrenMenus = NULL;
-	menu->parentMenus = NULL;
-	//	menu->Buttons = pressButtonHandler;
-	menu->Apps =  NULL;
+	menu->childrenMenus = nullptr;
+	menu->parentMenus = nullptr;
+	menu->Apps =  nullptr;
 }
 
 void createSubMenu(uint8_t itemsNum, struct menuStruct* startMenu)
@@ -23,26 +22,23 @@ void createSubMenu(uint8_t itemsNum, struct menuStruct* startMenu)
 	startMenu->childrenNums = itemsNum;
 	for (i = 0; i < itemsNum; i++)
 	{
-		struct menuStruct menu;
-		startMenu->childrenMenus[i] = menu;
 		initAStartMenu(&startMenu->childrenMenus[i]);
 		startMenu->childrenMenus[i].parentMenus = startMenu;
 		startMenu->childrenMenus[i].num = i;
+		startMenu->childrenMenus[i].menuStr = (const char*)malloc(sizeof("default"));						//为string申请好空间，因为变量常驻不需要考虑free
 		startMenu->childrenMenus[i].menuStr = "default";
 		startMenu->childrenMenus[i].layerNum = startMenu->layerNum + 1;
 	}
 }
 
-struct menuStruct* enterAimMenu(uint8_t layers, struct menuStruct* startMenu)
+struct menuStruct* enterSubMenu(uint8_t num, struct menuStruct* startMenu)
 {
-	uint8_t i;
-	struct menuStruct* tempPtr;
-	tempPtr = startMenu;
-	for(i = 0; i < layers; i++)
-	{
-		tempPtr = tempPtr->childrenMenus;
-	}
-	return tempPtr;
+	return &startMenu->childrenMenus[num];
+}
+
+struct menuStruct* enterUpMenu( struct menuStruct* startMenu)
+{
+	return startMenu->parentMenus;
 }
 
 void setSubMenuStr(char strInf[][20], struct menuStruct* startMenu)
@@ -50,8 +46,18 @@ void setSubMenuStr(char strInf[][20], struct menuStruct* startMenu)
 	uint8_t i = 0;
 	for (i = 0; i < startMenu->childrenNums; i++)
 	{
+		startMenu->childrenMenus[i].menuStr = (char*)sizeof(strInf[i]);
 		startMenu->childrenMenus[i].menuStr = strInf[i];
 	}
+}
+
+void normalMenuApp(void)
+{
+
+}
+void specificMenuApp(void)
+{
+
 }
 
 

@@ -14,7 +14,7 @@ struct guiStruct
 };
 
 
-
+void guiInit(struct menuStruct *startMenu);
 
 
 
